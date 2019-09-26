@@ -7,3 +7,4 @@ PuTTY를 사용하여 Windows에서 Linux 인스턴스에 연결 https://docs.aws.amazon.com/k
 Google Developers(firebase 포함) https://developers.google.com/products
 Ionic Framework 설치 및 시작 https://dgkim5360.tistory.com/entry/ionic-framework-install-tutorial
 Ionic 시작하기 http://webframeworks.kr/getstarted/ionic/
+How to add android and ios platform in ionic cli 3.3.0 https://stackoverflow.com/questions/44320846/how-to-add-android-and-ios-platform-in-ionic-cli-3-3-0
