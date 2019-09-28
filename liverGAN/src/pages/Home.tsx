@@ -1,7 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCheckbox, IonList, IonItem, IonLabel, IonNote, IonBadge, IonFabButton, IonFab, IonIcon } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import React from 'react';
-import { attachEventProps } from '@ionic/react/dist/types/components/utils';
 import { RouteComponentProps } from 'react-router';
 
 const Home: React.FC<RouteComponentProps> = (props) => {
