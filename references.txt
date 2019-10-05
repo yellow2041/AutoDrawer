@@ -17,6 +17,7 @@ DevOps
 Apache 서버 구축 / HTTP 통신 실습 https://itsaessak.tistory.com/167
 한번에 끝내는 ubuntu 웹서버세팅 https://blog.lael.be/post/73
 socket programming in python https://www.geeksforgeeks.org/socket-programming-python/
+아마존 웹 서비스(AWS) EC2 파일 전송 FileZilla https://hyeonstorage.tistory.com/272
 
 클라우드
 윈도우에서 Ubuntu (AWS EC2) GUI 이용 https://medium.com/@ggomma/%EC%9C%88%EB%8F%84%EC%9A%B0%EC%97%90%EC%84%9C-ubuntu-aws-ec2-gui-%EC%9D%B4%EC%9A%A9-ee2567a85d8f
