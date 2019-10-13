@@ -5,6 +5,8 @@ Ionic Framework 설치 및 시작 https://dgkim5360.tistory.com/entry/ionic-framework
 Ionic 시작하기 http://webframeworks.kr/getstarted/ionic/
 How to add android and ios platform in ionic cli 3.3.0 https://stackoverflow.com/questions/44320846/how-to-add-android-and-ios-platform-in-ionic-cli-3-3-0
 React Build your first app https://ionicframework.com/docs/react/your-first-app
+https://react-native-elements.github.io/react-native-elements/ (버튼 등 여러 컴포넌트 사용)
+https://g6ling.gitbooks.io/react-native-tutorial-korean/content/ (react native 튜토리얼)
 
 AI
 GAN을 이용한 image to image translation:pix2pix, cycleGAN, discoGAN https://taeoh-kim.github.io/blog/gan%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-image-to-image-translation-pix2pix-cyclegan-discogan/
