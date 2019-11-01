@@ -5,18 +5,20 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#CAC0E4',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     menuRow: {
         flex: 3,
         flexDirection: 'row',
     },
     rowSpace1: {
-        flex: 5,
+        flex: 7,
     },
     rowLogo: {
         flex: 6,
         flexDirection: 'row',
+        alignItems: 'center',
     },
     rowBtn: {
         flex: 7,
@@ -41,7 +43,7 @@ export default StyleSheet.create({
         flex: 2,
         alignItems: "center",
         height: '150%',
-        width: '100%',
+        width: '150%',
     },
     icon1: {
         flex: 4,
@@ -62,7 +64,7 @@ export default StyleSheet.create({
         resizeMode: 'center',
     },
     btnText: {
-        flex: 5,
+        flex: 6,
         alignItems: 'center',
         color: '#FCF6E4',
         fontSize: 25,
@@ -77,5 +79,27 @@ export default StyleSheet.create({
         fontSize: 35,
         color:"#FCF6E4",
         alignItems:'center',
+    },
+    sketch: {
+        flex: 2,
+        alignItems: "center",
+        height: '100%',
+        width: '100%',
+    },
+    transposeText1: {
+        flex: 3,
+        fontSize: 30,
+        color: "#448E9E",
+    },
+    completeMain: {
+        height: '130%',
+        width: 200,
+    },
+    menu: {
+        flex: 1
+    },
+    menuIcon: {
+        height: '100%',
+        width: '100%',
     }
 });

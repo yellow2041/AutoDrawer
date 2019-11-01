@@ -7,7 +7,12 @@ const Home = ({ navigation }) => (
     <View style={{ flex: 2 }}></View>
     <View style={styles.menuRow}>
       <View style={{ flex: 7 }}></View>
-      <View style={{ flex: 1, backgroundColor: '#02C340' }}></View>
+      <TouchableOpacity style={styles.menu}
+      onPress= {navigation.toggleDrawer}
+      title="Menu">
+        <Image style={styles.menuIcon}
+        source={require('./menuIcon.png')}/>
+      </TouchableOpacity>
     </View>
     <View style={styles.rowSpace1}></View>
     <View style={styles.rowLogo}>
@@ -20,7 +25,7 @@ const Home = ({ navigation }) => (
     <View style={styles.rowBtn}>
       <View style={{ flex: 3 }}></View>
       <TouchableOpacity 
-      style={{ flex: 5, backgroundColor: '#448E9E' }}
+      style={{ flex: 5, backgroundColor: '#448E9E'}}
       onPress={() => navigation.navigate('Sketch')}>
         <View style={{ flex: 8 }}>
           <View style={{ flex: 1 }}></View>
@@ -31,7 +36,7 @@ const Home = ({ navigation }) => (
         </View>
         <View style={{ flex: 3, flexDirection: 'row' }}>
           <View style={{ flex: 1 }}></View>
-          <Text style={styles.btnText}>Sketch</Text>
+          <Text style={styles.btnText}> Sketch</Text>
           <View style={{ flex: 1 }}></View>
         </View>
         <View style={{ flex: 1 }}></View>
@@ -98,7 +103,8 @@ const Home = ({ navigation }) => (
 );
 
 Home.navigationOptions = {
-  header:null
+  header: null,
+  backgroundColor: "#FCF6E4"
 }
 
 export default Home;
