@@ -33,6 +33,7 @@ const appNavigator = createSwitchNavigator({
     stack:RootStack,
 });
 class App extends Component {
+
     render(){
         return(
             <RootStack />

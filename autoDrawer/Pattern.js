@@ -1,11 +1,40 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
 class pattern extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            selectedPicture: null,
+            takenPicture: null,
+        };
+    }
+
+    // 사진 선택, 사진 찍기 함수 구현
+    getPermission = async () => {
+        const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+        if (status !== 'granted') {
+            const { status, permissions } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        }
+    }
+    getPermission2 = async () => {
+        const { status } = await Permissions.getAsync(Permissions.CAMERA);
+        if (status !== 'granted') {
+            const { status, permissions } = await Permissions.askAsync(Permissions.CAMERA);
+        }
+    }
+    selectImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+        });
+        this.setState({ selectedPicture: result.uri });
+
+    }
+    componentDidMount() {
+        this.getPermission();
+        this.getPermission2();
     }
     render() {
         const { navigation } = this.props;
@@ -28,7 +57,7 @@ class pattern extends Component {
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
-                        onPress={() => navigation.navigate('Home')}>
+                        onPress={this.selectImage}>
                         {/*이곳에 갤러리 버튼을 누르면 나올 갤러리 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                             <View style={{ flex: 1 }}></View>
@@ -70,7 +99,10 @@ class pattern extends Component {
                 <View style={styles.rowFileName}>
                     <View style={{ flex: 2 }}></View>
                     <View style={{ flex: 5 }}></View>
-                    <View style={{ flex: 2 }}></View>
+                    <View style={{ flex: 2 }}>
+                    <Button title = "뒤로" onPress={() => navigation.navigate("Home", {selectedPattern:this.state.selectedPicture})}></Button>
+
+                    </View>
                     <View style={{ flex: 5 }}></View>
                     <View style={{ flex: 2 }}></View>
                 </View>

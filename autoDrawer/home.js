@@ -68,7 +68,8 @@ const Home = ({ navigation }) => (
       <View style={{ flex: 5}}>
         <TextInput
         style={styles.fileName}
-        placeholder="  파일명"
+        // navigation.getParam --- 첫번째 인자를 키로 가져옴, 단, 첫 번째 인자를 키로하는 값이 없으면 두 번째 인자를 default로 취함
+        placeholder={navigation.getParam("selectedSketch", "  파일명")}
         placeholderTextColor='#448E9E'
         autoCapitalize="none"
         editable={false}
@@ -79,7 +80,7 @@ const Home = ({ navigation }) => (
       <View style={{ flex: 5 }}>
       <TextInput
         style={styles.fileName}
-        placeholder="  파일명or색상코드"
+        placeholder={navigation.getParam("selectedPattern", "  파일명or색상코드")}
         placeholderTextColor='#448E9E'
         autoCapitalize="none"
         editable={false}
