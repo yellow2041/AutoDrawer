@@ -10,13 +10,15 @@ import Transpose from './transpose';
 import MyHistory from './myHistory';
 import Tutorial from './tutorial';
 import About from './about';
+import Palette from './Palette';
 
 const RootStack = createStackNavigator(
     {
         Home,
         Sketch,
         Pattern,
-        Transpose
+        Transpose,
+        Palette
     },
     { initialRouteName: 'Home' }
 );

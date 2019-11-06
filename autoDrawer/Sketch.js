@@ -112,8 +112,8 @@ class sketch extends Component {
 
                     <View style={{ flex: 5 }}></View>
                     <View style={{ flex: 2 }}>
-                    <Button title = "뒤로" onPress={() => navigation.navigate("Home", {selectedSketch:this.state.selectedPicture})}></Button>
-
+                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedSketch:this.state.selectedPicture})}></Button>
+                    
                     </View>
                     <View style={{ flex: 5 }}></View>
                     <View style={{ flex: 2 }}></View>
