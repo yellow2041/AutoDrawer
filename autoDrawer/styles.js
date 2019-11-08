@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
+
+var {height, width} = Dimensions.get('window');
 
 export default StyleSheet.create({
     container: {
@@ -48,7 +51,7 @@ export default StyleSheet.create({
     icon1: {
         flex: 4,
         height: '85%',
-        width: '85%',
+        width: width,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -57,7 +60,7 @@ export default StyleSheet.create({
     icon2: {
         flex: 4,
         height: '90%',
-        width: '90%',
+        width: width,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -67,7 +70,7 @@ export default StyleSheet.create({
         flex: 6,
         alignItems: 'center',
         color: '#FCF6E4',
-        fontSize: 25,
+        fontSize: 0.055*width,
     },
     fileName: {
         flex: 1,
@@ -76,7 +79,7 @@ export default StyleSheet.create({
         borderWidth: 2,
     },
     goBtnText: {
-        fontSize: 35,
+        fontSize: 0.075*width,
         color:"#FCF6E4",
         alignItems:'center',
     },
@@ -88,12 +91,14 @@ export default StyleSheet.create({
     },
     transposeText1: {
         flex: 3,
-        fontSize: 30,
+        fontSize: 0.07*width,
         color: "#448E9E",
     },
     completeMain: {
-        height: '130%',
-        width: 200,
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        resizeMode: 'cover',
     },
     menu: {
         flex: 1
