@@ -8,7 +8,12 @@ const transpose = ({ navigation }) => (
         <View style={{ flex: 2 }}></View>
         <View style={styles.menuRow}>
             <View style={{ flex: 7 }}></View>
-            <View style={{ flex: 1, backgroundColor: '#02C340' }}></View>
+            <TouchableOpacity style={styles.menu}
+                onPress={() => navigation.toggleDrawer()}
+                title="Menu">
+                <Image style={styles.menuIcon}
+                    source={require('./menuIcon.png')} />
+            </TouchableOpacity>
         </View>
         <View style={styles.rowSpace1}></View>
         <View style={styles.rowLogo}>
@@ -18,21 +23,11 @@ const transpose = ({ navigation }) => (
             <View style={{ flex: 1 }}></View>
         </View>
         <Text style={styles.transposeText1}>output:                     </Text>
-        <View style={{flex: 9, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{ flex: 20, alignItems: 'center', justifyContent: 'center' }}>
             <Image style={styles.completeMain}
-            source={require('./empty.png')} />
+                source={require('./empty.png')} />
         </View>
-        <View style={styles.rowSpace2}></View>
-        <View style={{ flex: 1 }}></View>
-        <View style={styles.rowFileName}>
-            <View style={{ flex: 2 }}></View>
-            <View style={{ flex: 5 }}>
-            </View>
-            <View style={{ flex: 2 }}></View>
-            <View style={{ flex: 5 }}>
-            </View>
-            <View style={{ flex: 2 }}></View>
-        </View>
+        
         <View style={{ flex: 1 }}></View>
         <View style={styles.rowGoBtn}>
             <View style={{ flex: 1 }}></View>

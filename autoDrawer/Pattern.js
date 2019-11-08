@@ -50,8 +50,7 @@ class pattern extends Component {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 2 }}></View>
-                <View style={styles.menuRow}>
-                </View>
+                <View style={styles.menuRow}></View>
                 <View style={styles.rowSpace1}></View>
                 <View style={styles.rowLogo}>
                     <View style={{ flex: 1 }}></View>

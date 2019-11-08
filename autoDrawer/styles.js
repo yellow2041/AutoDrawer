@@ -95,8 +95,10 @@ export default StyleSheet.create({
         color: "#448E9E",
     },
     completeMain: {
-        height: '130%',
-        width: 200,
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        resizeMode: 'cover',
     },
     menu: {
         flex: 1
