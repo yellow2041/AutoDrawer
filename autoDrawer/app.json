@@ -13,7 +13,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -25,6 +25,13 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "splash":{
+        "image": "./logo.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
     }
   }
 }

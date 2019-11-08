@@ -49,10 +49,7 @@ class sketch extends Component {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 2 }}></View>
-                <View style={styles.menuRow}>
-                    <View style={{ flex: 7 }}></View>
-                    <View style={{ flex: 1, backgroundColor: '#02C340' }}></View>
-                </View>
+                <View style={styles.menuRow}></View>
                 <View style={styles.rowSpace1}></View>
                 <View style={styles.rowLogo}>
                     <View style={{ flex: 1 }}></View>
@@ -109,13 +106,11 @@ class sketch extends Component {
                 <View style={{ flex: 1 }}></View>
                 <View style={styles.rowFileName}>
                     <View style={{ flex: 2 }}></View>
-
-                    <View style={{ flex: 5 }}></View>
-                    <View style={{ flex: 2 }}>
+                    <View style={{ flex: 4 }}></View>
+                    <View style={{ flex: 4 }}>
                     <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedSketch:this.state.selectedPicture})}></Button>
-                    
                     </View>
-                    <View style={{ flex: 5 }}></View>
+                    <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 2 }}></View>
                 </View>
                 <View style={{ flex: 1 }}></View>
