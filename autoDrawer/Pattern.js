@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import styles from './styles';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
+import patternState from './global'
 
 class pattern extends Component {
     constructor(props) {
@@ -10,6 +12,8 @@ class pattern extends Component {
         this.state = {
             selectedPicture: null,
             takenPicture: null,
+            color: null,
+            patternMsg: "Pick me!",
         };
     }
 
@@ -29,8 +33,8 @@ class pattern extends Component {
     selectImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
         });
-        this.setState({ selectedPicture: result.uri });
-
+        patternState.uri = result.uri;
+//        this.setState({ selectedPicture: result.uri });
     }
     componentDidMount() {
         this.getPermission();
@@ -39,14 +43,16 @@ class pattern extends Component {
     selectColor = () => {
         const {navigation}=this.props;
         navigation.navigate('Palette');
-        this.setState({selectedPicture: navigation.getParam("selectedColor", 'default')});
+       patternState.uri = navigation.getParam("selectedColor", 'default')
     }
     color(){
         this.setState({selectedPicture: navigation.getParam("selectedColor", 'default')});
     }
+    toString(color_info){
+        this.setState({patternMsg: color_info["h"]});
+    }
     render() {
         const { navigation } = this.props;
-        
         return (
             <View style={styles.container}>
                 <View style={{ flex: 2 }}></View>
@@ -87,9 +93,10 @@ class pattern extends Component {
                         {/*이곳에 팔레트 버튼을 누르면 나올 팔레트 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                         <Text>
-          otherParam:{' '}
-          {JSON.stringify(navigation.getParam('selectedColor', 'default value'))}
-        </Text>
+                            <NavigationEvents onDidFocus={() => this.toString(navigation.getParam("selectedColor", {"h":123}))} />
+                            otherParam:{' '}
+                            {this.state.patternMsg}
+                        </Text>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon2}
@@ -111,7 +118,7 @@ class pattern extends Component {
                     <View style={{ flex: 2 }}></View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 4 }}>
-                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedPattern:this.state.selectedPicture})}></Button>
+                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedPattern: '' + this.state.patternMsg})}></Button>
                     </View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 2 }}></View>
