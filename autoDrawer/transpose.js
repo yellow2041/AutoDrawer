@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Image, Button } from 'react-native';
 import styles from './styles';
 
-
 const transpose = ({ navigation }) => (
     <View style={styles.container}>
         <View style={{ flex: 2 }}></View>
