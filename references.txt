@@ -7,6 +7,8 @@ How to add android and ios platform in ionic cli 3.3.0 https://stackoverflow.com
 React Build your first app https://ionicframework.com/docs/react/your-first-app
 https://react-native-elements.github.io/react-native-elements/ (버튼 등 여러 컴포넌트 사용)
 https://g6ling.gitbooks.io/react-native-tutorial-korean/content/ (react native 튜토리얼)
+리액트 개발자가 걷게 되는 길 https://repo.yona.io/doortts/blog/post/297
+React에서 Mobx 경험기 http://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html
 
 AI
 GAN을 이용한 image to image translation:pix2pix, cycleGAN, discoGAN https://taeoh-kim.github.io/blog/gan%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-image-to-image-translation-pix2pix-cyclegan-discogan/

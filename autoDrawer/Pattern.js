@@ -4,7 +4,7 @@ import { NavigationEvents } from 'react-navigation';
 import styles from './styles';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import patternState from './global'
+import patternState from './redux'
 
 class pattern extends Component {
     constructor(props) {
@@ -49,7 +49,7 @@ class pattern extends Component {
         this.setState({selectedPicture: navigation.getParam("selectedColor", 'default')});
     }
     toString(color_info){
-        this.setState({patternMsg: color_info["h"]});
+        this.setState({patternMsg: color_info});
     }
     render() {
         const { navigation } = this.props;
@@ -93,7 +93,7 @@ class pattern extends Component {
                         {/*이곳에 팔레트 버튼을 누르면 나올 팔레트 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                         <Text>
-                            <NavigationEvents onDidFocus={() => this.toString(navigation.getParam("selectedColor", {"h":123}))} />
+                            <NavigationEvents onDidFocus={() => this.toString(navigation.getParam("selectedColor", "#010101"))} />
                             otherParam:{' '}
                             {this.state.patternMsg}
                         </Text>

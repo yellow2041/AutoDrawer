@@ -3,6 +3,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { Provider, connect } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+
 import Home from './home';
 import Sketch from './Sketch';
 import Pattern from './Pattern';
@@ -11,8 +14,11 @@ import MyHistory from './myHistory';
 import Tutorial from './tutorial';
 import About from './about';
 import Palette from './Palette';
+import reducers from './reducers';
 import { AppLoading } from 'expo';
 import {Asset} from 'expo-asset';
+
+const store = createStore(reducers);
 
 const RootStack = createStackNavigator(
     {
