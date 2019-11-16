@@ -17,8 +17,10 @@ class palette extends Component {
     render() {
         const { navigation } = this.props;
         return (
-            <View style={{ flex: 1, padding: 15, backgroundColor: '#212021' }}>
-                <Text style={{ color: 'white' }}>React Native Color Picker - Controlled</Text>
+            <View style={{ flex: 1, padding: 15, backgroundColor: '#212021'}}>
+                <View style={{flex: 1}}></View>
+                <Text style={{ color: 'white', fontSize: 25}}>Palette</Text>
+                <View style={{flex: 3}}>
                 <ColorPicker
                     oldColor='purple'
                     color={this.state.color}
@@ -28,6 +30,8 @@ class palette extends Component {
                     style={{ flex: 1 }}
                 />
                 <Button title = "확인" onPress={() => navigation.navigate("Pattern", {selectedColor: this.state.color})}></Button>
+                </View>
+                <View style={{flex: 1}}></View>
             </View>
         );
     }
