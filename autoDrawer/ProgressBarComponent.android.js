@@ -15,11 +15,17 @@ export default class progress extends Component {
         }
     }
     StartProgress = () => {
+        const { navigation } = this.props;
         this.value = setInterval(() => {
             if (this.state.progressStatus <= 1) {
                 this.setState({ progressStatus: this.state.progressStatus + .01 })
             }
-        }, 100);
+        }, 10);
+        this.complete = setInterval(() => {
+            if(this.state.progressStatus >= 1){
+                navigation.navigate('Transpose')
+            }
+        },50);
     }
     stopProgress = () => {
         clearInterval(this.value);
@@ -29,6 +35,11 @@ export default class progress extends Component {
     }
     movePage = () => {
         this.state.progressStatus 
+    }
+    moveResult = () => {
+        if(this.state.progressStatus == 100){
+            navigation.navigate('Transpose')
+        }
     }
     render() {
         return (
