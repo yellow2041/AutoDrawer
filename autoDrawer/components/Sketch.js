@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
-import styles from './styles';
+import styles from '../styles';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import patternState from './redux'
 
-class pattern extends Component {
+import * as actions from '../modules/ducks';
+import { connect } from 'react-redux';
+
+class sketch extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedPicture: null,
-            takenPicture: null,
-            color: null,
-            patternMsg: "Pick me!",
-        };
+        const { navigation } = this.props;  
     }
 
     // 사진 선택, 사진 찍기 함수 구현
@@ -31,25 +27,16 @@ class pattern extends Component {
         }
     }
     selectImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-        });
-        patternState.uri = result.uri;
-//        this.setState({ selectedPicture: result.uri });
+        let result = await ImagePicker.launchImageLibraryAsync({});
+        this.props.setSketch(result.uri);
+    }
+    takeImage = async () => {
+        let result = await ImagePicker.launchCameraAsync({});
+        this.props.setSketch(result.uri);
     }
     componentDidMount() {
         this.getPermission();
         this.getPermission2();
-    }
-    selectColor = () => {
-        const {navigation}=this.props;
-        navigation.navigate('Palette');
-       patternState.uri = navigation.getParam("selectedColor", 'default')
-    }
-    color(){
-        this.setState({selectedPicture: navigation.getParam("selectedColor", 'default')});
-    }
-    toString(color_info){
-        this.setState({patternMsg: color_info});
     }
     render() {
         const { navigation } = this.props;
@@ -61,22 +48,24 @@ class pattern extends Component {
                 <View style={styles.rowLogo}>
                     <View style={{ flex: 1 }}></View>
                     <Image style={styles.sketch}
-                        source={require('./Pattern.png')} />
+                        source={require('../icons/Sketch.png')} />
                     <View style={{ flex: 1 }}></View>
                 </View>
                 <View style={styles.rowSpace1}></View>
                 <View style={styles.rowBtn}>
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
-                        style={{ flex: 5, backgroundColor: '#7DC1E0' }}
-                        onPress={this.selectImage}>
+                        style={{ flex: 5, backgroundColor: '#61B7C9' }}
+                        onPress={
+                            this.selectImage
+                        }
+                    >
                         {/*이곳에 갤러리 버튼을 누르면 나올 갤러리 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
-                            
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon1}
-                                    source={require('./sketchIcon.png')} />
+                                    source={require('../icons/sketchIcon.png')} />
                             </View>
                         </View>
                         <View style={{ flex: 3, flexDirection: 'row' }}>
@@ -88,24 +77,19 @@ class pattern extends Component {
                     </TouchableOpacity>
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
-                        style={{ flex: 5, backgroundColor: '#7DC1E0' }}
-                        onPress={() => navigation.navigate('Palette')}>
-                        {/*이곳에 팔레트 버튼을 누르면 나올 팔레트 화면 연결해야함. 현재는 home으로 연결해놓음 */}
+                        style={{ flex: 5, backgroundColor: '#61B7C9' }}
+                        onPress={this.takeImage}>
+                        {/*이곳에 카메라 버튼을 누르면 나올 카메라 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
-                        <Text>
-                            <NavigationEvents onDidFocus={() => this.toString(navigation.getParam("selectedColor", "#010101"))} />
-                            otherParam:{' '}
-                            {this.state.patternMsg}
-                        </Text>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon2}
-                                    source={require('./Palette.png')} />
+                                    source={require('../icons/cameraIcon.png')} />
                             </View>
                         </View>
                         <View style={{ flex: 3, flexDirection: 'row' }}>
                             <View style={{ flex: 1 }}></View>
-                            <Text style={styles.btnText}>Palette</Text>
+                            <Text style={styles.btnText}>Camera</Text>
                             <View style={{ flex: 1 }}></View>
                         </View>
                         <View style={{ flex: 1 }}></View>
@@ -118,7 +102,7 @@ class pattern extends Component {
                     <View style={{ flex: 2 }}></View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 4 }}>
-                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedPattern: '' + this.state.patternMsg})}></Button>
+                    <Button title = "확인" onPress={() => navigation.navigate("Home")}></Button>
                     </View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 2 }}></View>
@@ -130,8 +114,16 @@ class pattern extends Component {
     }
 }
 
-pattern.navigationOptions = {
+sketch.navigationOptions = {
     header: null
 }
 
-export default pattern;
+const mapStateToProps = (state) => ({
+    sketch      : state.sketch,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    setSketch   : (data) => dispatch(actions.setSketch(data)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(sketch);

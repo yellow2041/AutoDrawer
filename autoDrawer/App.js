@@ -3,22 +3,20 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { Provider, connect } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
 
-import Home from './home';
-import Sketch from './Sketch';
-import Pattern from './Pattern';
-import Transpose from './transpose';
-import MyHistory from './myHistory';
-import Tutorial from './tutorial';
+import { Provider } from 'react-redux';
+import store from './store';
+
+import Home from './components/home';
+import Sketch from './components/Sketch';
+import Pattern from './components/Pattern';
+import Transpose from './components/transpose';
+import MyHistory from './components/myHistory';
+import Tutorial from './components/tutorial';
 import About from './about';
-import Palette from './Palette';
-import reducers from './reducers';
+import Palette from './components/Palette';
 import { AppLoading } from 'expo';
 import {Asset} from 'expo-asset';
-
-const store = createStore(reducers);
 
 const RootStack = createStackNavigator(
     {
@@ -58,11 +56,14 @@ class App extends Component {
             );
         }
         return (
-            <AppContainer />
+            <Provider store={store}>
+                <AppContainer /> 
+            </Provider>
         );
     }
     async _cacheResourcesAsync() {
-        const images = [require('./logo.png')];
+        
+        const images = [require('./icons/logo.png')];
 
         const cacheImages = images.map(image => {
             return Asset.fromModule(image).downloadAsync();

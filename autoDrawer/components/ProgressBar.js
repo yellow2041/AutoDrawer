@@ -6,7 +6,7 @@ import {
     ProgressBarComponent,
     progressProps,
 } from './ProgressBarComponent.android';
-import styles from './styles';
+import styles from '../styles';
 
 const ProgressLabel = ({show, progress}) =>
 new Map({

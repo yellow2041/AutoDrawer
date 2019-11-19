@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
-import styles from './styles';
+import { NavigationEvents } from 'react-navigation';
+import styles from '../styles';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-class sketch extends Component {
+import * as actions from '../modules/ducks';
+import { connect } from 'react-redux';
+//import redux modules
+
+class pattern extends Component {
     constructor(props) {
         super(props);
-
-        const { navigation } = this.props;  
     }
-    state = {
-        selectedPicture: null,
-        takenPicture: null,
-    };
 
     // 사진 선택, 사진 찍기 함수 구현
     getPermission = async () => {
@@ -23,26 +22,22 @@ class sketch extends Component {
         }
     }
     getPermission2 = async () => {
-
         const { status } = await Permissions.getAsync(Permissions.CAMERA);
         if (status !== 'granted') {
             const { status, permissions } = await Permissions.askAsync(Permissions.CAMERA);
         }
     }
     selectImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-        });
-        this.setState({ selectedPicture: result.uri });
+        let result = await ImagePicker.launchImageLibraryAsync({});
+        this.props.setPattern(result.uri);
     }
-    takeImage = async () => {
-        let result = await ImagePicker.launchCameraAsync({
-        });
-        this.setState({ selectedPicture: result.uri });
-    }
-
-    componentDidMount() {
+    componentDidMount() { // 유저가 거부했을 때 체크해보기
         this.getPermission();
         this.getPermission2();
+    }
+    selectColor = () => {
+        const {navigation}=this.props;
+        navigation.navigate('Palette');
     }
     render() {
         const { navigation } = this.props;
@@ -54,24 +49,22 @@ class sketch extends Component {
                 <View style={styles.rowLogo}>
                     <View style={{ flex: 1 }}></View>
                     <Image style={styles.sketch}
-                        source={require('./Sketch.png')} />
+                        source={require('../icons/Pattern.png')} />
                     <View style={{ flex: 1 }}></View>
                 </View>
                 <View style={styles.rowSpace1}></View>
                 <View style={styles.rowBtn}>
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
-                        style={{ flex: 5, backgroundColor: '#61B7C9' }}
-                        onPress={
-                            this.selectImage
-                        }
-                    >
+                        style={{ flex: 5, backgroundColor: '#7DC1E0' }}
+                        onPress={this.selectImage}>
                         {/*이곳에 갤러리 버튼을 누르면 나올 갤러리 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
+                            
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon1}
-                                    source={require('./sketchIcon.png')} />
+                                    source={require('../icons/sketchIcon.png')} />
                             </View>
                         </View>
                         <View style={{ flex: 3, flexDirection: 'row' }}>
@@ -83,19 +76,23 @@ class sketch extends Component {
                     </TouchableOpacity>
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
-                        style={{ flex: 5, backgroundColor: '#61B7C9' }}
-                        onPress={this.takeImage}>
-                        {/*이곳에 카메라 버튼을 누르면 나올 카메라 화면 연결해야함. 현재는 home으로 연결해놓음 */}
+                        style={{ flex: 5, backgroundColor: '#7DC1E0' }}
+                        onPress={() => navigation.navigate('Palette')}>
+                        {/*이곳에 팔레트 버튼을 누르면 나올 팔레트 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
+                        <Text>
+                            otherParam:{' '}
+                            {this.props.pattern}
+                        </Text>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon2}
-                                    source={require('./cameraIcon.png')} />
+                                    source={require('../icons/Palette.png')} />
                             </View>
                         </View>
                         <View style={{ flex: 3, flexDirection: 'row' }}>
                             <View style={{ flex: 1 }}></View>
-                            <Text style={styles.btnText}>Camera</Text>
+                            <Text style={styles.btnText}>Palette</Text>
                             <View style={{ flex: 1 }}></View>
                         </View>
                         <View style={{ flex: 1 }}></View>
@@ -108,7 +105,7 @@ class sketch extends Component {
                     <View style={{ flex: 2 }}></View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 4 }}>
-                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedSketch:this.state.selectedPicture})}></Button>
+                    <Button title = "확인" onPress={() => navigation.navigate("Home")}></Button>
                     </View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 2 }}></View>
@@ -120,8 +117,15 @@ class sketch extends Component {
     }
 }
 
-sketch.navigationOptions = {
+pattern.navigationOptions = {
     header: null
 }
 
-export default sketch;
+export default connect(
+    (state) => ({
+        pattern     : state.pattern,
+    }), 
+    (dispatch) => ({
+        setPattern  : (data) => dispatch(actions.setPattern(data)),
+    })
+)(pattern);

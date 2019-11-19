@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { View, Image, TouchableOpacity, Text, TextInput } from 'react-native';
 
-
-
-import styles from './styles';
+import * as actions from '../modules/ducks';
+import { connect } from 'react-redux';
+import styles from '../styles';
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
   }
   render() {
     const { navigation } = this.props;
@@ -22,14 +20,14 @@ class Home extends Component {
             onPress={() => navigation.toggleDrawer()}
             title="Menu">
             <Image style={styles.menuIcon}
-              source={require('./menuIcon.png')} />
+              source={require('../icons/menuIcon.png')} />
           </TouchableOpacity>
         </View>
         <View style={styles.rowSpace1}></View>
         <View style={styles.rowLogo}>
           <View style={{ flex: 1 }}></View>
           <Image style={styles.logo}
-            source={require('./logo.png')} />
+            source={require('../icons/logo.png')} />
           <View style={{ flex: 1 }}></View>
         </View>
         <View style={styles.rowSpace1}></View>
@@ -42,7 +40,7 @@ class Home extends Component {
               <View style={{ flex: 1 }}></View>
               <View style={{ flex: 4, flexDirection: 'row' }}>
                 <Image style={styles.icon1}
-                  source={require('./sketchIcon.png')} />
+                  source={require('../icons/sketchIcon.png')} />
               </View>
             </View>
             <View style={{ flex: 3, flexDirection: 'row' }}>
@@ -60,7 +58,7 @@ class Home extends Component {
               <View style={{ flex: 1 }}></View>
               <View style={{ flex: 4, flexDirection: 'row' }}>
                 <Image style={styles.icon2}
-                  source={require('./patternIcon.png')} />
+                  source={require('../icons/patternIcon.png')} />
               </View>
             </View>
             <View style={{ flex: 3, flexDirection: 'row' }}>
@@ -80,7 +78,7 @@ class Home extends Component {
             <TextInput
               style={styles.fileName}
               // navigation.getParam --- 첫번째 인자를 키로 가져옴, 단, 첫 번째 인자를 키로하는 값이 없으면 두 번째 인자를 default로 취함
-              placeholder={navigation.getParam("selectedSketch", "  파일명")}
+              placeholder={this.props.sketch}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
               editable={false}
@@ -91,7 +89,7 @@ class Home extends Component {
           <View style={{ flex: 5 }}>
             <TextInput
               style={styles.fileName}
-              placeholder={navigation.getParam("selectedPattern", "  파일명or색상코드")}
+              placeholder={this.props.pattern}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
               editable={false}
@@ -121,4 +119,26 @@ Home.navigationOptions = {
   backgroundColor: "#FCF6E4"
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    sketch      : state.sketch,
+    pattern     : state.pattern,
+    recommend   : state.recommend,
+    token       : state.token,
+    category    : state.category,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    init        : () => dispatch(actions.init()),
+    setSketch   : (data) => dispatch(actions.setSketch(data)),
+    setPattern  : (data) => dispatch(actions.setPattern(data)),
+    setRecommend: (data) => dispatch(actions.setRecommend(data)),
+    setToken    : (data) => dispatch(actions.setToken(data)),
+    setCategory : (data) => dispatch(actions.setCategory(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
