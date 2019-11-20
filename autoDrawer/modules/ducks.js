@@ -29,7 +29,6 @@ userName
 import { createAction, handleActions } from 'redux-actions';
 import { toHsv } from 'react-native-color-picker';
 import types from './types';
-import { Map } from 'immutable';
 
 export const init = createAction(types.INIT);
 export const setSketch = createAction(types.SET_SKETCH);
@@ -42,7 +41,7 @@ export const setRecommend = createAction(types.SET_RECOMMEND);
 export const setToken = createAction(types.SET_TOKEN);
 export const setCategory = createAction(types.SET_CATEGORY);
 
-const baseState = Map({
+const baseState = {
     sketch      : '  파일명',
     pattern     : '  파일명or색상코드',
     mode        : 'color',
@@ -53,7 +52,7 @@ const baseState = Map({
     recommend   : [],
     token       : '',
     category    : 'bag',
-});
+};
 
 export default handleActions({
     [types.INIT]            : ( state, action ) => { return state },
