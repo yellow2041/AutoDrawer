@@ -13,10 +13,17 @@ import Pattern from './components/Pattern';
 import Transpose from './components/transpose';
 import MyHistory from './components/myHistory';
 import Tutorial from './components/tutorial';
+import Home from './home';
+import Sketch from './Sketch';
+import Pattern from './Pattern';
+import Transpose from './transpose';
+import MyHistory from './myHistory';
+import Tutorial from './tutorial';
+import Progress from './ProgressBarComponent.android';
 import About from './about';
 import Palette from './components/Palette';
 import { AppLoading } from 'expo';
-import {Asset} from 'expo-asset';
+import { Asset } from 'expo-asset';
 
 const RootStack = createStackNavigator(
     {
@@ -24,23 +31,25 @@ const RootStack = createStackNavigator(
         Sketch,
         Pattern,
         Transpose,
+        Progress,
         Palette
     },
     { initialRouteName: 'Home' }
 );
 const DrawerNav = createDrawerNavigator({
-    Home: Home,
+    Home: RootStack,
     Tutorial: Tutorial,
 },
-    {
+    {   
         drawerPosition: 'right',
         drawerBackgroundColor: "#FCF6E4"
     });
-const appNavigator = createSwitchNavigator({
+    
+const AppNavigator = createSwitchNavigator({
     Drawer: DrawerNav,
     stack: RootStack,
 });
-const AppContainer = createAppContainer(appNavigator);
+const AppContainer = createAppContainer(AppNavigator);
 class App extends Component {
     state = {
         isReady: false,
