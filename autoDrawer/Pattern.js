@@ -10,7 +10,7 @@ class pattern extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedPicture: null,
+            selectedResult: null,
             takenPicture: null,
             color: null,
             patternMsg: "Pick me!",
@@ -34,6 +34,7 @@ class pattern extends Component {
         let result = await ImagePicker.launchImageLibraryAsync({
         });
         patternState.uri = result.uri;
+        this.setState({selectedResult: result.uri})
 //        this.setState({ selectedPicture: result.uri });
     }
     componentDidMount() {
@@ -50,6 +51,7 @@ class pattern extends Component {
     }
     toString(color_info){
         this.setState({patternMsg: color_info["h"]});
+        this.setState({selectedResult: '' + color_info["h"]})
     }
     render() {
         const { navigation } = this.props;
@@ -118,7 +120,7 @@ class pattern extends Component {
                     <View style={{ flex: 2 }}></View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 4 }}>
-                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedPattern: '' + this.state.patternMsg})}></Button>
+                    <Button title = "확인" onPress={() => navigation.navigate("Home", {selectedPattern: this.state.selectedResult})}></Button>
                     </View>
                     <View style={{ flex: 4 }}></View>
                     <View style={{ flex: 2 }}></View>
