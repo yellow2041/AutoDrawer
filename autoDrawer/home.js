@@ -102,7 +102,7 @@ class Home extends Component {
           <View style={{ flex: 1 }}></View>
           <TouchableOpacity
             style={{ flex: 2, backgroundColor: '#448E9E', alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => navigation.navigate('Transpose')}>
+            onPress={() => navigation.navigate('Progress')}>
             <Text style={styles.goBtnText}>GO!</Text>
           </TouchableOpacity>
           <View style={{ flex: 1 }}></View>
