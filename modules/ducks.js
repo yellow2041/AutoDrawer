@@ -25,7 +25,7 @@ export const setRecommend = createAction(types.SET_RECOMMEND);
 export const setToken = createAction(types.SET_TOKEN);
 export const setCategory = createAction(types.SET_CATEGORY);
 
-const baseState = fromJS({
+const baseState = ({
     sketch      : '파일명',
     pattern     : '파일명or색상코드',
     oldColor    : '#000000',
@@ -38,15 +38,15 @@ const baseState = fromJS({
 });
 
 export default handleActions({
-    [types.SET_SKETCH]      : ( state, action ) => { return state.set('sketch', action.payload) },
-    [types.SET_PATTERN]     : ( state, action ) => { return state.set('pattern', action.payload) },
-    [types.SET_OLDCOLOR]    : ( state, action ) => { return state.set('oldColor', action.payload) },
-    [types.SET_COLOR]       : ( state, action ) => { return state.set('color', action.payload) },
-    [types.SET_PROGRESS]    : ( state, action ) => { return state.set('progress', action.payload) },
-    [types.SET_RESULT]      : ( state, action ) => { return state.set('result', action.payload) },
-    [types.SET_RECOMMEND]   : ( state, action ) => { return state.set('recommend', action.payload) },
-    [types.SET_TOKEN]       : ( state, action ) => { return state.set('token', action.payload) },
-    [types.SET_CATEGORY]    : ( state, action ) => { return state.set('category', action.payload) },
+    [types.SET_SKETCH]      : ( state, action ) => { return Object.assign({}, state, { sketch: action.payload }) },
+    [types.SET_PATTERN]     : ( state, action ) => { return Object.assign({}, state, { pattern: action.payload }) },
+    [types.SET_OLDCOLOR]    : ( state, action ) => { return Object.assign({}, state, { oldColor: action.payload }) },
+    [types.SET_COLOR]       : ( state, action ) => { return Object.assign({}, state, { color: action.payload }) },
+    [types.SET_PROGRESS]    : ( state, action ) => { return Object.assign({}, state, { progress: action.payload }) },
+    [types.SET_RESULT]      : ( state, action ) => { return Object.assign({}, state, { result: action.payload }) },
+    [types.SET_RECOMMEND]   : ( state, action ) => { return Object.assign({}, state, { recommend: action.payload }) },
+    [types.SET_TOKEN]       : ( state, action ) => { return Object.assign({}, state, { token: action.payload }) },
+    [types.SET_CATEGORY]    : ( state, action ) => { return Object.assign({}, state, { category: action.payload }) },
 }, baseState);
 
 ////////////////////////////////////////////////
