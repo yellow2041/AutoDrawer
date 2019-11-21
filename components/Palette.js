@@ -54,8 +54,8 @@ palette.navigationOptions = {
 }
 
 const mapStateToProps = (state) => ({
-    oldColor    : state.duck.oldColor,
-    color       : state.duck.color,
+    oldColor    : state.duck.get('oldColor'),
+    color       : state.duck.get('color'),
 })
 
 const mapDispatchToProps = (dispatch) => ({

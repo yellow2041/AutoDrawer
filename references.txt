@@ -9,6 +9,7 @@ https://react-native-elements.github.io/react-native-elements/ (버튼 등 여러 컴�
 https://g6ling.gitbooks.io/react-native-tutorial-korean/content/ (react native 튜토리얼)
 리액트 개발자가 걷게 되는 길 https://repo.yona.io/doortts/blog/post/297
 React에서 Mobx 경험기 http://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html
+axis와 fetch중 어떤 것을 사용할까? https://hoorooroob.tistory.com/entry/React-React-Naive-TIPS-axios-%EC%99%80-fetch-%EC%96%B4%EB%96%A4-%EA%B2%83%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C
 
 AI
 GAN을 이용한 image to image translation:pix2pix, cycleGAN, discoGAN https://taeoh-kim.github.io/blog/gan%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-image-to-image-translation-pix2pix-cyclegan-discogan/

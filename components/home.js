@@ -147,11 +147,11 @@ Home.navigationOptions = {
 const mapStateToProps = (state) => {
   console.log(state.duck);
   return {
-    sketch      : state.duck.sketch,
-    pattern     : state.duck.pattern,
-    recommend   : state.duck.recommend,
-    token       : state.duck.token,
-    category    : state.duck.category,
+    sketch      : state.duck.get('sketch'),
+    pattern     : state.duck.get('pattern'),
+    recommend   : state.duck.get('recommend'),
+    token       : state.duck.get('token'),
+    category    : state.duck.get('category'),
   }
 }
 
