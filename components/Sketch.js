@@ -119,7 +119,7 @@ sketch.navigationOptions = {
 }
 
 const mapStateToProps = (state) => ({
-    sketch      : state.sketch,
+    sketch      : state.duck.sketch,
 })
 
 const mapDispatchToProps = (dispatch) => ({

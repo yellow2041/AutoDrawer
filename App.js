@@ -13,20 +13,13 @@ import Pattern from './components/Pattern';
 import Transpose from './components/transpose';
 import MyHistory from './components/myHistory';
 import Tutorial from './components/tutorial';
-import Home from './home';
-import Sketch from './Sketch';
-import Pattern from './Pattern';
-import Transpose from './transpose';
-import MyHistory from './myHistory';
-import Tutorial from './tutorial';
-import Progress from './ProgressBarComponent.android';
+import Progress from './components/ProgressBarComponent.android';
 import About from './about';
 import Palette from './components/Palette';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 
-const RootStack = createStackNavigator(
-    {
+const RootStack = createStackNavigator({
         Home,
         Sketch,
         Pattern,

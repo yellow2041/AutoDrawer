@@ -9,6 +9,11 @@ class Home extends Component {
   constructor(props) {
     super(props);
   }
+  sendToServer = () => {
+    fetch(
+
+    )
+  }
   render() {
     const { navigation } = this.props;
     return (
@@ -78,7 +83,7 @@ class Home extends Component {
             <TextInput
               style={styles.fileName}
               // navigation.getParam --- 첫번째 인자를 키로 가져옴, 단, 첫 번째 인자를 키로하는 값이 없으면 두 번째 인자를 default로 취함
-              placeholder={this.props.sketch}
+              placeholder={'  ' + this.props.sketch}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
               editable={false}
@@ -89,7 +94,7 @@ class Home extends Component {
           <View style={{ flex: 5 }}>
             <TextInput
               style={styles.fileName}
-              placeholder={this.props.pattern}
+              placeholder={'  ' + this.props.pattern}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
               editable={false}
@@ -103,7 +108,27 @@ class Home extends Component {
           <View style={{ flex: 1 }}></View>
           <TouchableOpacity
             style={{ flex: 2, backgroundColor: '#448E9E', alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => navigation.navigate('Progress')}>
+            onPress={ async () => {
+              baseUrl = {}
+              options = {
+                method: 'POST',
+                headers: {
+                  Token: this.props.token,
+                },
+                body: JSON.stringify({
+                  sketch: this.props.sketch,
+                  pattern: this.props.pattern,
+                  recommend: this.props.recommend,
+                  category: this.props.category,
+                })
+              }
+
+              response = await fetch(baseUrl,options)
+              responseOK = response && response.ok
+              if (reponseOK){
+                navigation.navigate('Progress')
+              }
+              }}>
             <Text style={styles.goBtnText}>GO!</Text>
           </TouchableOpacity>
           <View style={{ flex: 1 }}></View>
@@ -120,24 +145,24 @@ Home.navigationOptions = {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log(state.duck);
   return {
-    sketch      : state.sketch,
-    pattern     : state.pattern,
-    recommend   : state.recommend,
-    token       : state.token,
-    category    : state.category,
+    sketch      : state.duck.sketch,
+    pattern     : state.duck.pattern,
+    recommend   : state.duck.recommend,
+    token       : state.duck.token,
+    category    : state.duck.category,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    init        : () => dispatch(actions.init()),
     setSketch   : (data) => dispatch(actions.setSketch(data)),
     setPattern  : (data) => dispatch(actions.setPattern(data)),
     setRecommend: (data) => dispatch(actions.setRecommend(data)),
     setToken    : (data) => dispatch(actions.setToken(data)),
     setCategory : (data) => dispatch(actions.setCategory(data)),
+    setProgress : (data) => dispatch(actions.setProgress(data)),
   }
 }
 
