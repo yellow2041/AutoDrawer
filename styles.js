@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
+import { ColorPicker } from 'react-native-color-picker';
 
 var {height, width} = Dimensions.get('window');
 
@@ -106,5 +107,8 @@ export default StyleSheet.create({
     menuIcon: {
         height: '100%',
         width: '100%',
+    },
+    colorPicker:{
+        flex : 1,
     }
 });

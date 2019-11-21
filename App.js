@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import { Provider } from 'react-redux';
@@ -32,6 +31,7 @@ const RootStack = createStackNavigator({
 const DrawerNav = createDrawerNavigator({
     Home: RootStack,
     Tutorial: Tutorial,
+    Transpose: Transpose,
 },
     {   
         drawerPosition: 'right',

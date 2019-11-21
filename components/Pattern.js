@@ -58,7 +58,6 @@ class pattern extends Component {
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
                         onPress={this.selectImage}>
-                        {/*이곳에 갤러리 버튼을 누르면 나올 갤러리 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                             
                             <View style={{ flex: 1 }}></View>
@@ -78,12 +77,11 @@ class pattern extends Component {
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
                         onPress={() => navigation.navigate('Palette')}>
-                        {/*이곳에 팔레트 버튼을 누르면 나올 팔레트 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
-                        <Text>
+                        {/* <Text>
                             otherParam:{' '}
                             {this.props.pattern}
-                        </Text>
+                        </Text> */}
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon2}
