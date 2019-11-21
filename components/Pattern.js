@@ -123,7 +123,7 @@ pattern.navigationOptions = {
 
 export default connect(
     (state) => ({
-        pattern     : state.pattern,
+        pattern     : state.duck.pattern,
     }), 
     (dispatch) => ({
         setPattern  : (data) => dispatch(actions.setPattern(data)),
