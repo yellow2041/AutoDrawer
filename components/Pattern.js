@@ -35,10 +35,6 @@ class pattern extends Component {
         this.getPermission();
         this.getPermission2();
     }
-    selectColor = () => {
-        const {navigation}=this.props;
-        navigation.navigate('Palette');
-    }
     render() {
         const { navigation } = this.props;
         return (
@@ -76,7 +72,8 @@ class pattern extends Component {
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
-                        onPress={() => navigation.navigate('Palette')}>
+                        onPress={ () => navigation.navigate("Palette") }>
+                        {/*이곳에 팔레트 버튼을 누르면 나올 팔레트 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                         {/* <Text>
                             otherParam:{' '}
@@ -121,7 +118,7 @@ pattern.navigationOptions = {
 
 export default connect(
     (state) => ({
-        pattern     : state.duck.get('pattern'),
+        pattern     : state.duck.pattern,
     }), 
     (dispatch) => ({
         setPattern  : (data) => dispatch(actions.setPattern(data)),

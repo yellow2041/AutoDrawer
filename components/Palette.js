@@ -27,7 +27,7 @@ class palette extends Component {
                 <ColorPicker  
                     color={ this.props.color }
                     oldColor={ this.props.oldColor }
-                    onColorChange={this.props.setColor}
+                    onColorChange={ this.props.setColor }
                     onColorSelected={() => {
                         this.props.setOldColor(fromHsv(this.props.color));
                         this.props.setPattern(fromHsv(this.props.color));
@@ -54,8 +54,8 @@ palette.navigationOptions = {
 }
 
 const mapStateToProps = (state) => ({
-    oldColor    : state.duck.get('oldColor'),
-    color       : state.duck.get('color'),
+    oldColor    : state.duck.oldColor,
+    color       : state.duck.color,
 })
 
 const mapDispatchToProps = (dispatch) => ({
