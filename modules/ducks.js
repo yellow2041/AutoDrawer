@@ -24,6 +24,7 @@ export const setResult = createAction(types.SET_RESULT);
 export const setRecommend = createAction(types.SET_RECOMMEND);
 export const setToken = createAction(types.SET_TOKEN);
 export const setCategory = createAction(types.SET_CATEGORY);
+export const setMyImage = createAction(types.SET_MYIMAGE);
 
 const baseState = ({
     sketch      : '파일명',
@@ -35,6 +36,10 @@ const baseState = ({
     recommend   : [],
     token       : '',
     category    : 'bag',
+    myImage     : [ require('../icons/test_image/1.jpg'),
+                    require('../icons/test_image/2.jpg'),
+                    require('../icons/test_image/3.jpg'),
+                    require('../icons/test_image/4.jpg') ],
 });
 
 export default handleActions({
@@ -47,6 +52,7 @@ export default handleActions({
     [types.SET_RECOMMEND]   : ( state, action ) => { return Object.assign({}, state, { recommend: action.payload }) },
     [types.SET_TOKEN]       : ( state, action ) => { return Object.assign({}, state, { token: action.payload }) },
     [types.SET_CATEGORY]    : ( state, action ) => { return Object.assign({}, state, { category: action.payload }) },
+    [types.SET_MYIMAGE]     : ( state, action ) => { return Object.assign({}, state, { myImage: action.payload }) },
 }, baseState);
 
 ////////////////////////////////////////////////
