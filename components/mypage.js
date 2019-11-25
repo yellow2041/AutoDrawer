@@ -99,7 +99,12 @@ class Mypage extends Component {
 Mypage.navigationOptions = {
     header: null
 }
+
 const mapStateToProps = (state) => ({
     image       : state.duck.Image,
 })
-export default connect(mapStateToProps)(Mypage);
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Mypage);

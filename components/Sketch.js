@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import styles from '../styles';
 import * as actions from '../modules/ducks';
-
 class sketch extends Component {
     constructor(props) {
         super(props);
@@ -17,14 +16,15 @@ class sketch extends Component {
         if (status !== 'granted') {
             const { status, permissions } = await askAsync(grant);
         }
+        
     }
     selectImage = async () => {
-        let result = await launchImageLibraryAsync({});
-        this.props.setSketch(result.uri);
+        let result = await launchImageLibraryAsync({ 'base64': true });
+        this.props.setSketch(result.base64);
     }
     takeImage = async () => {
-        let result = await launchCameraAsync({});
-        this.props.setSketch(result.uri);
+        let result = await launchCameraAsync({ 'base64': true });
+        this.props.setSketch(result.base64);
     }
     componentDidMount() {
         this.getPermission(CAMERA_ROLL);

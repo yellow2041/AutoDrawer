@@ -10,7 +10,7 @@ class Home extends Component {
     super(props);
   }
   sendToServer = async () => {
-    baseUrl = {}
+    baseUrl = 'http://10.11.42.69:8000/stream/'
     options = {
       method: 'POST',
       headers: {
@@ -26,9 +26,8 @@ class Home extends Component {
 
     response = await fetch(baseUrl,options)
     if (response.status == 200) {
-      this.props.navigate('Progress');
+      console.log('Good!');
     }
-  
   }
   render() {
     const { navigation } = this.props;
@@ -121,9 +120,7 @@ class Home extends Component {
           <View style={{ flex: 1 }}></View>
           <TouchableOpacity
             style={{ flex: 2, backgroundColor: '#448E9E', alignItems: 'center', justifyContent: 'center' }}
-            onPress={ async () => {
-              
-              }}>
+            onPress={ this.sendToServer }>
             <Text style={styles.goBtnText}>GO!</Text>
           </TouchableOpacity>
           <View style={{ flex: 1 }}></View>
@@ -140,7 +137,7 @@ Home.navigationOptions = {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.duck);
+  //console.log(state.duck);
   return {
     sketch      : state.duck.sketch,
     pattern     : state.duck.pattern,

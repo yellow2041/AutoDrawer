@@ -18,8 +18,8 @@ class pattern extends Component {
         }
     }
     selectImage = async () => {
-        let result = await launchImageLibraryAsync({});
-        this.props.setPattern(result.uri);
+        let result = await launchImageLibraryAsync({ 'base64': true});
+        this.props.setPattern(result.base64);
     }
     componentDidMount() { // 유저가 거부했을 때 체크해보기
         this.getPermission(CAMERA_ROLL);

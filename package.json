@@ -8,11 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@remobile/react-native-file": "^1.0.4",
-=======
     "@expo/vector-icons": "10.0.6",
->>>>>>> 3ead87be2dda0caa83ab1ba658f41b699822a697
     "expo": "^35.0.0",
     "expo-image-picker": "~7.0.0",
     "expo-permissions": "~7.0.0",
