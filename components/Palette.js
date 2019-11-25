@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {View, Text, Button} from 'react-native';
 import { ColorPicker, fromHsv } from 'react-native-color-picker';
+import { connect } from 'react-redux';
 
 import * as actions from '../modules/ducks';
-import { connect } from 'react-redux';
+import styles from '../styles';
 
 class palette extends Component {
     constructor(props) {
@@ -13,8 +14,7 @@ class palette extends Component {
         const { navigation } = this.props;
         return (
             <View style={{ flex: 1, padding: 15, backgroundColor: '#212021' }}>
-                <Text style={{ color: 'white' }}>React Native Color Picker - Controlled</Text>
-                <ColorPicker    
+                <ColorPicker  
                     color={ this.props.color }
                     oldColor={ this.props.oldColor }
                     onColorChange={ this.props.setColor }
@@ -27,7 +27,7 @@ class palette extends Component {
                         this.props.setPattern(this.props.oldColor);
                         navigation.navigate("Pattern");
                     }}
-                    style={{ flex: 1 }}
+                    style={styles.colorPicker}
                 />
                 <Button title = "확인" onPress={() => {
                         this.props.setOldColor(fromHsv(this.props.color));

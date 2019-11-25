@@ -64,10 +64,10 @@ class pattern extends Component {
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
                         onPress={ () => navigation.navigate("Palette") }>
                         <View style={{ flex: 8 }}>
-                        <Text>
+                        {/* <Text>
                             otherParam:{' '}
-                            { this.props.pattern }
-                        </Text>
+                            {this.props.pattern}
+                        </Text> */}
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon2}
