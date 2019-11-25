@@ -9,10 +9,26 @@ class Home extends Component {
   constructor(props) {
     super(props);
   }
-  sendToServer = () => {
-    fetch(
+  sendToServer = async () => {
+    baseUrl = {}
+    options = {
+      method: 'POST',
+      headers: {
+        Token: this.props.token,
+      },
+      body: JSON.stringify({
+        sketch: this.props.sketch,
+        pattern: this.props.pattern,
+        recommend: this.props.recommend,
+        category: this.props.category,
+      })
+    }
 
-    )
+    response = await fetch(baseUrl,options)
+    if (response.status == 200) {
+      this.props.navigate('Progress');
+    }
+  
   }
   render() {
     const { navigation } = this.props;
@@ -82,12 +98,10 @@ class Home extends Component {
           <View style={{ flex: 5 }}>
             <TextInput
               style={styles.fileName}
-              // navigation.getParam --- 첫번째 인자를 키로 가져옴, 단, 첫 번째 인자를 키로하는 값이 없으면 두 번째 인자를 default로 취함
               placeholder={'  ' + this.props.sketch}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
               editable={false}
-            //onChangeText={this.sketchFile}
             />
           </View>
           <View style={{ flex: 2 }}></View>
@@ -98,7 +112,6 @@ class Home extends Component {
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
               editable={false}
-            //onChangeText={this.patternFile}
             />
           </View>
           <View style={{ flex: 2 }}></View>
@@ -109,25 +122,7 @@ class Home extends Component {
           <TouchableOpacity
             style={{ flex: 2, backgroundColor: '#448E9E', alignItems: 'center', justifyContent: 'center' }}
             onPress={ async () => {
-              baseUrl = {}
-              options = {
-                method: 'POST',
-                headers: {
-                  Token: this.props.token,
-                },
-                body: JSON.stringify({
-                  sketch: this.props.sketch,
-                  pattern: this.props.pattern,
-                  recommend: this.props.recommend,
-                  category: this.props.category,
-                })
-              }
-
-              response = await fetch(baseUrl,options)
-              responseOK = response && response.ok
-              if (reponseOK){
-                navigation.navigate('Progress')
-              }
+              
               }}>
             <Text style={styles.goBtnText}>GO!</Text>
           </TouchableOpacity>

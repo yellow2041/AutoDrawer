@@ -1,42 +1,34 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Image, TouchableOpacity } from 'react-native';
-import styles from '../styles';
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-
-import * as actions from '../modules/ducks';
+import { getAsync, askAsync, CAMERA, CAMERA_ROLL } from 'expo-permissions';
+import { launchCameraAsync, launchImageLibraryAsync } from 'expo-image-picker';
 import { connect } from 'react-redux';
+
+import styles from '../styles';
+import * as actions from '../modules/ducks';
 
 class sketch extends Component {
     constructor(props) {
         super(props);
-        const { navigation } = this.props;  
+        const { navigation } = this.props;
     }
-
-    // 사진 선택, 사진 찍기 함수 구현
-    getPermission = async () => {
-        const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+    getPermission = async ( grant ) => {
+        const { status } = await getAsync(grant);
         if (status !== 'granted') {
-            const { status, permissions } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-        }
-    }
-    getPermission2 = async () => {
-        const { status } = await Permissions.getAsync(Permissions.CAMERA);
-        if (status !== 'granted') {
-            const { status, permissions } = await Permissions.askAsync(Permissions.CAMERA);
+            const { status, permissions } = await askAsync(grant);
         }
     }
     selectImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({});
+        let result = await launchImageLibraryAsync({});
         this.props.setSketch(result.uri);
     }
     takeImage = async () => {
-        let result = await ImagePicker.launchCameraAsync({});
+        let result = await launchCameraAsync({});
         this.props.setSketch(result.uri);
     }
     componentDidMount() {
-        this.getPermission();
-        this.getPermission2();
+        this.getPermission(CAMERA_ROLL);
+        this.getPermission(CAMERA);
     }
     render() {
         const { navigation } = this.props;
@@ -60,7 +52,6 @@ class sketch extends Component {
                             this.selectImage
                         }
                     >
-                        {/*이곳에 갤러리 버튼을 누르면 나올 갤러리 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
@@ -79,7 +70,6 @@ class sketch extends Component {
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#61B7C9' }}
                         onPress={this.takeImage}>
-                        {/*이곳에 카메라 버튼을 누르면 나올 카메라 화면 연결해야함. 현재는 home으로 연결해놓음 */}
                         <View style={{ flex: 8 }}>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
@@ -117,11 +107,9 @@ class sketch extends Component {
 sketch.navigationOptions = {
     header: null
 }
-
 const mapStateToProps = (state) => ({
     sketch      : state.duck.sketch,
 })
-
 const mapDispatchToProps = (dispatch) => ({
     setSketch   : (data) => dispatch(actions.setSketch(data)),
 })
