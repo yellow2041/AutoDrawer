@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {View, Text, Button} from 'react-native';
-import { ColorPicker, toHsv, fromHsv } from 'react-native-color-picker';
+import { ColorPicker, fromHsv } from 'react-native-color-picker';
 
 import * as actions from '../modules/ducks';
 import { connect } from 'react-redux';
