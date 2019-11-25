@@ -9,7 +9,8 @@ const types = {
     SET_RESULT: 'SET_RESULT',
     SET_RECOMMEND: 'SET_RECOMMEND',
     SET_TOKEN: 'SET_TOKEN',
-    SET_CATEGORY: 'SET_CATEGORY'
+    SET_CATEGORY: 'SET_CATEGORY',
+    SET_MYIMAGE: 'SET_MYIMAGE'
 }
 
 export default types;

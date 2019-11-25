@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import { Provider } from 'react-redux';
 import store from './store';
 
 import Home from './components/home';
+import Mypage from './components/mypage';
 import Sketch from './components/Sketch';
 import Pattern from './components/Pattern';
 import Transpose from './components/transpose';
@@ -25,13 +25,17 @@ const RootStack = createStackNavigator({
         Pattern,
         Transpose,
         Progress,
-        Palette
+        Palette,
+        Mypage,
     },
     { initialRouteName: 'Home' }
 );
 const DrawerNav = createDrawerNavigator({
-    Home: RootStack,
+    //Back: RootStack,
+    Home:Home,
     Tutorial: Tutorial,
+    Transpose: Transpose,
+    마이페이지: Mypage,
 },
     {   
         drawerPosition: 'right',
