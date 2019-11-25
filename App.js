@@ -14,7 +14,7 @@ import Transpose from './components/transpose';
 import MyHistory from './components/myHistory';
 import Tutorial from './components/tutorial';
 import Progress from './components/ProgressBarComponent.android';
-import About from './about';
+import About from './components/about';
 import Palette from './components/Palette';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';

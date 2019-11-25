@@ -11,15 +11,6 @@ class palette extends Component {
     constructor(props) {
         super(props);
     }
-    onColorSelected = (navigation) => {
-        this.props.setOldColor(fromHsv(this.props.color));
-        this.props.setPattern(fromHsv(this.props.color));
-        navigation.navigate("Pattern");
-    }
-    onOldColorSelected = (navigation) => {
-        this.props.setPattern(this.props.oldColor);
-        navigation.navigate("Pattern");
-    }
     render() {
         const { navigation } = this.props;
         return (
