@@ -78,6 +78,7 @@ export default StyleSheet.create({
         backgroundColor: "#FCF6E4",
         borderColor: "#448E9E",
         borderWidth: 2,
+        color: "#448E9E",
     },
     goBtnText: {
         fontSize: 0.075*width,

@@ -24,12 +24,27 @@ class Home extends Component {
       })
     }
 
-    response = await fetch(baseUrl,options)
+    response = await fetch(baseUrl, options)
     if (response.status == 200) {
       console.log('Good!');
     }
   }
-  
+  check1 = () =>{
+    if (this.props.sketch !== '파일uri') {
+      return (<View style={{flex: 1}}>
+          <Image style={{flex: 1, width: undefined, height: undefined}}
+              source={require('../icons/check.png')} />
+      </View>);
+  }
+  }
+  check2 = () =>{
+    if (this.props.pattern !== '파일uri or 색상코드') {
+      return (<View style={{flex: 1}}>
+          <Image style={{flex: 1, width: undefined, height: undefined}}
+              source={require('../icons/check.png')} />
+      </View>);
+  }
+  }
   render() {
     const { navigation } = this.props;
     return (
@@ -51,7 +66,20 @@ class Home extends Component {
             source={require('../icons/logo.png')} />
           <View style={{ flex: 1 }}></View>
         </View>
-        <View style={styles.rowSpace1}></View>
+        <View style={{ flex: 5 }}></View>
+        <View style={{
+          flex: 2, flexDirection: 'row',
+        }}>
+          <View style={{ flex: 5 }}></View>
+          <View style={{ flex: 2 }}>
+            {this.check1()}
+          </View>
+          <View style={{ flex: 7 }}></View>
+          <View style={{ flex: 2 }}>
+            {this.check2()}
+          </View>
+          <View style={{ flex: 5 }}></View>
+        </View>
         <View style={styles.rowBtn}>
           <View style={{ flex: 3 }}></View>
           <TouchableOpacity
@@ -101,7 +129,10 @@ class Home extends Component {
               placeholder={'  ' + this.props.sketch}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
+              value={'  ' + this.props.sketch}
               editable={false}
+              numberOfLines={1}
+              maxLength={20}
             />
           </View>
           <View style={{ flex: 2 }}></View>
@@ -111,7 +142,10 @@ class Home extends Component {
               placeholder={'  ' + this.props.pattern}
               placeholderTextColor='#448E9E'
               autoCapitalize="none"
+              value={'  ' + this.props.pattern}
               editable={false}
+              numberOfLines={1}
+              maxLength={20}
             />
           </View>
           <View style={{ flex: 2 }}></View>
@@ -121,7 +155,7 @@ class Home extends Component {
           <View style={{ flex: 1 }}></View>
           <TouchableOpacity
             style={{ flex: 2, backgroundColor: '#448E9E', alignItems: 'center', justifyContent: 'center' }}
-            onPress={ this.sendToServer }>
+            onPress={this.sendToServer}>
             <Text style={styles.goBtnText}>GO!</Text>
           </TouchableOpacity>
           <View style={{ flex: 1 }}></View>
@@ -140,22 +174,22 @@ Home.navigationOptions = {
 const mapStateToProps = (state) => {
   //console.log(state.duck);
   return {
-    sketch      : state.duck.sketch,
-    pattern     : state.duck.pattern,
-    recommend   : state.duck.recommend,
-    token       : state.duck.token,
-    category    : state.duck.category,
+    sketch: state.duck.sketch,
+    pattern: state.duck.pattern,
+    recommend: state.duck.recommend,
+    token: state.duck.token,
+    category: state.duck.category,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSketch   : (data) => dispatch(actions.setSketch(data)),
-    setPattern  : (data) => dispatch(actions.setPattern(data)),
+    setSketch: (data) => dispatch(actions.setSketch(data)),
+    setPattern: (data) => dispatch(actions.setPattern(data)),
     setRecommend: (data) => dispatch(actions.setRecommend(data)),
-    setToken    : (data) => dispatch(actions.setToken(data)),
-    setCategory : (data) => dispatch(actions.setCategory(data)),
-    setProgress : (data) => dispatch(actions.setProgress(data)),
+    setToken: (data) => dispatch(actions.setToken(data)),
+    setCategory: (data) => dispatch(actions.setCategory(data)),
+    setProgress: (data) => dispatch(actions.setProgress(data)),
   }
 }
 
