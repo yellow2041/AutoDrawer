@@ -10,16 +10,39 @@ import styles from '../styles';
 class pattern extends Component {
     constructor(props) {
         super(props);
+        this.state = { check: 0 };
     }
-    getPermission = async ( grant ) => {
+    getPermission = async (grant) => {
         const { status } = await getAsync(grant);
         if (status !== 'granted') {
             const { status, permissions } = await askAsync(grant);
         }
     }
     selectImage = async () => {
-        let result = await launchImageLibraryAsync({ 'base64': true});
+        let result = await launchImageLibraryAsync({ 'base64': true });
         this.props.setPattern(result.base64);
+        if (result.cancelled !== true) {
+            this.setState({ check: 1 });
+            this.props.setCheckPalette(false);
+        }
+    }
+    checkSelectedGallery = () => {
+        if (this.props.checkPalette !== true) {
+            if (this.state.check === 1) {
+                return (<View style={{ flex: 1 }}>
+                    <Image style={{ flex: 1, width: undefined, height: undefined }}
+                        source={require('../icons/check.png')} />
+                </View>);
+            }
+        }
+    }
+    checkSelectedPalette = () => {
+        if (this.props.checkPalette === true) {
+            return (<View style={{ flex: 1 }}>
+                <Image style={{ flex: 1, width: undefined, height: undefined }}
+                    source={require('../icons/check.png')} />
+            </View>);
+        }
     }
     componentDidMount() { // 유저가 거부했을 때 체크해보기
         this.getPermission(CAMERA_ROLL);
@@ -32,20 +55,38 @@ class pattern extends Component {
                 <View style={{ flex: 2 }}></View>
                 <View style={styles.menuRow}></View>
                 <View style={styles.rowSpace1}></View>
-                <View style={styles.rowLogo}>
+                <View style={{
+                    flex: 8,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                }}>
                     <View style={{ flex: 1 }}></View>
                     <Image style={styles.sketch}
                         source={require('../icons/Pattern.png')} />
                     <View style={{ flex: 1 }}></View>
                 </View>
-                <View style={styles.rowSpace1}></View>
+                <View style={{ flex: 3 }}></View>
+                <View style={{
+                    flex: 2, flexDirection: 'row',
+                }}>
+                    {/*삽입시 생기는 체크표시 구현하기*/}
+                    <View style={{ flex: 5 }}></View>
+                    <View style={{ flex: 2 }}>
+                        {this.checkSelectedGallery()}
+                    </View>
+                    <View style={{ flex: 7 }}></View>
+                    <View style={{ flex: 2 }}>
+                        {this.checkSelectedPalette()}
+                    </View>
+                    <View style={{ flex: 5 }}></View>
+                </View>
                 <View style={styles.rowBtn}>
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
                         onPress={this.selectImage}>
                         <View style={{ flex: 8 }}>
-                            
+
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
                                 <Image style={styles.icon1}
@@ -62,9 +103,9 @@ class pattern extends Component {
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#7DC1E0' }}
-                        onPress={ () => navigation.navigate("Palette") }>
+                        onPress={() => navigation.navigate("Palette")}>
                         <View style={{ flex: 8 }}>
-                        {/* <Text>
+                            {/* <Text>
                             otherParam:{' '}
                             {this.props.pattern}
                         </Text> */}
@@ -85,17 +126,20 @@ class pattern extends Component {
                 </View>
                 <View style={styles.rowSpace2}></View>
                 <View style={{ flex: 1 }}></View>
-                <View style={styles.rowFileName}>
+                <View style={{
+                    flex: 10,
+                    flexDirection: 'row',
+                }}>
                     <View style={{ flex: 2 }}></View>
-                    <View style={{ flex: 4 }}></View>
-                    <View style={{ flex: 4 }}>
-                    <Button title = "확인" onPress={() => navigation.navigate("Home")}></Button>
+                    <View style={{ flex: 3 }}></View>
+                    <View style={{ flex: 6 }}>
+                        <Button title="확인" onPress={() => navigation.navigate("Home")} color='#a55eea'></Button>
                     </View>
-                    <View style={{ flex: 4 }}></View>
+                    <View style={{ flex: 3 }}></View>
                     <View style={{ flex: 2 }}></View>
                 </View>
                 <View style={{ flex: 1 }}></View>
-                <View style={styles.rowSpace3}></View>
+                <View style={{ flex: 4 }}></View>
             </View>
         );
     }
@@ -104,12 +148,13 @@ class pattern extends Component {
 pattern.navigationOptions = {
     header: null
 }
-
 export default connect(
     (state) => ({
-        pattern     : state.duck.pattern,
-    }), 
+        pattern: state.duck.pattern,
+        checkPalette: state.duck.checkPalette
+    }),
     (dispatch) => ({
-        setPattern  : (data) => dispatch(actions.setPattern(data)),
-    })
+        setPattern: (data) => dispatch(actions.setPattern(data)),
+        setCheckPalette: (data) => dispatch(actions.setCheckPalette(data)),
+    }),
 )(pattern);

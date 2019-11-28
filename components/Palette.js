@@ -14,6 +14,8 @@ class palette extends Component {
         const { navigation } = this.props;
         return (
             <View style={{ flex: 1, padding: 15, backgroundColor: '#212021' }}>
+                <View style = {{flex :2 }}></View>
+                <View style = {{flex : 7}}>
                 <ColorPicker  
                     color={ this.props.color }
                     oldColor={ this.props.oldColor }
@@ -21,19 +23,32 @@ class palette extends Component {
                     onColorSelected={() => {
                         this.props.setOldColor(fromHsv(this.props.color));
                         this.props.setPattern(fromHsv(this.props.color));
+                        this.props.setCheckPalette(true);
                         navigation.navigate("Pattern");
                     }}
                     onOldColorSelected= {() => {
                         this.props.setPattern(this.props.oldColor);
+                        this.props.setPattern(fromHsv(this.props.color));
+                        this.props.setCheckPalette(true);
                         navigation.navigate("Pattern");
                     }}
                     style={styles.colorPicker}
                 />
-                <Button title = "확인" onPress={() => {
+                </View>
+                <View style = {{flex:1}}></View>
+                <View style = {{flex: 1, flexDirection: 'row' }}>
+                    <View style = {{flex: 1}}></View>
+                    <View style = {{flex: 1}}>
+                <Button title = "확인" color='#a55eea' onPress={() => {
                         this.props.setOldColor(fromHsv(this.props.color));
                         this.props.setPattern(fromHsv(this.props.color));
+                        this.props.setCheckPalette(true);
                         navigation.navigate("Pattern");
-                    }}></Button>
+                    }}/>
+                    </View>
+                    <View style = {{flex: 1}}></View>
+                    </View>               
+                    <View style = {{flex : 2}}></View>
             </View>
         );
     }
@@ -46,12 +61,14 @@ palette.navigationOptions = {
 const mapStateToProps = (state) => ({
     oldColor    : state.duck.oldColor,
     color       : state.duck.color,
+    checkPalette: state.duck.checkPalette,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     setPattern  : (data) => dispatch(actions.setPattern(data)),
     setOldColor : (data) => dispatch(actions.setOldColor(data)),
     setColor    : (data) => dispatch(actions.setColor(data)),
+    setCheckPalette: (data) => dispatch(actions.setCheckPalette(data)),
 })
 
 

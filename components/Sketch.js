@@ -10,25 +10,45 @@ class sketch extends Component {
     constructor(props) {
         super(props);
         const { navigation } = this.props;
+        this.state = { check: 0 };
     }
-    getPermission = async ( grant ) => {
+    getPermission = async (grant) => {
         const { status } = await getAsync(grant);
         if (status !== 'granted') {
             const { status, permissions } = await askAsync(grant);
         }
-        
     }
     selectImage = async () => {
         let result = await launchImageLibraryAsync({ 'base64': true });
         this.props.setSketch(result.base64);
+        if(result.cancelled !== true)
+            this.setState({ check: 1 });
     }
     takeImage = async () => {
         let result = await launchCameraAsync({ 'base64': true });
         this.props.setSketch(result.base64);
+        if(result.cancelled !== true)
+            this.setState({ check: 2 });
     }
     componentDidMount() {
         this.getPermission(CAMERA_ROLL);
         this.getPermission(CAMERA);
+    }
+    checkSelectedGallery = () => {
+        if (this.state.check === 1) {
+            return (<View style={{flex: 1}}>
+                <Image style={{flex: 1, width: undefined, height: undefined}}
+                    source={require('../icons/check.png')} />
+            </View>);
+        }
+    }
+    checkSelectedCamera = () => {
+        if (this.state.check === 2) {
+            return (<View style={{flex: 1}}>
+                <Image style={{flex: 1, width: undefined, height: undefined}}
+                    source={require('../icons/check.png')} />
+            </View>);
+        }
     }
     render() {
         const { navigation } = this.props;
@@ -37,21 +57,37 @@ class sketch extends Component {
                 <View style={{ flex: 2 }}></View>
                 <View style={styles.menuRow}></View>
                 <View style={styles.rowSpace1}></View>
-                <View style={styles.rowLogo}>
+                <View style={{
+                    flex: 8,
+                    flexDirection: 'row'
+                }}>
                     <View style={{ flex: 1 }}></View>
                     <Image style={styles.sketch}
                         source={require('../icons/Sketch.png')} />
                     <View style={{ flex: 1 }}></View>
                 </View>
-                <View style={styles.rowSpace1}></View>
+                <View style={{ flex: 3 }}></View>
+                <View style={{
+                    flex: 2, flexDirection: 'row',
+                }}>
+                    {/*삽입시 생기는 체크표시 구현하기*/}
+                    <View style={{flex: 5}}></View>
+                    <View style={{flex: 2}}>
+                        {this.checkSelectedGallery()}
+                    </View>
+                    <View style={{flex: 7}}></View>
+                    <View style={{flex: 2 }}>
+                        {this.checkSelectedCamera()}
+                    </View>
+                    <View style={{flex: 5}}></View>
+                </View>
                 <View style={styles.rowBtn}>
                     <View style={{ flex: 3 }}></View>
                     <TouchableOpacity
                         style={{ flex: 5, backgroundColor: '#61B7C9' }}
                         onPress={
                             this.selectImage
-                        }
-                    >
+                        }>
                         <View style={{ flex: 8 }}>
                             <View style={{ flex: 1 }}></View>
                             <View style={{ flex: 4, flexDirection: 'row' }}>
@@ -90,11 +126,11 @@ class sketch extends Component {
                 <View style={{ flex: 1 }}></View>
                 <View style={styles.rowFileName}>
                     <View style={{ flex: 2 }}></View>
-                    <View style={{ flex: 4 }}></View>
-                    <View style={{ flex: 4 }}>
-                    <Button title = "확인" onPress={() => navigation.navigate("Home")}></Button>
+                    <View style={{ flex: 3 }}></View>
+                    <View style={{ flex: 6 }}>
+                        <Button title="확인" onPress={() => navigation.navigate("Home")} color='#a55eea'></Button>
                     </View>
-                    <View style={{ flex: 4 }}></View>
+                    <View style={{ flex: 3 }}></View>
                     <View style={{ flex: 2 }}></View>
                 </View>
                 <View style={{ flex: 1 }}></View>
@@ -108,10 +144,10 @@ sketch.navigationOptions = {
     header: null
 }
 const mapStateToProps = (state) => ({
-    sketch      : state.duck.sketch,
+    sketch: state.duck.sketch,
 })
 const mapDispatchToProps = (dispatch) => ({
-    setSketch   : (data) => dispatch(actions.setSketch(data)),
+    setSketch: (data) => dispatch(actions.setSketch(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(sketch);
