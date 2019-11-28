@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
+
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -20,18 +21,19 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 
 const RootStack = createStackNavigator({
-        Home,
+        Home:Home,
         Sketch,
         Pattern,
         Transpose,
         Progress,
         Palette,
         Mypage,
+        Tutorial,
     },
     { initialRouteName: 'Home' }
 );
 const DrawerNav = createDrawerNavigator({
-    //Back: RootStack,
+    Back: RootStack,
     Home:Home,
     Tutorial: Tutorial,
     Transpose: Transpose,

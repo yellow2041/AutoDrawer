@@ -29,6 +29,7 @@ class Home extends Component {
       console.log('Good!');
     }
   }
+  
   render() {
     const { navigation } = this.props;
     return (
@@ -73,7 +74,7 @@ class Home extends Component {
           <View style={{ flex: 3 }}></View>
           <TouchableOpacity
             style={{ flex: 5, backgroundColor: '#448E9E' }}
-            onPress={() => navigation.navigate('Pattern')}>
+            onPress={() => navigation.navigate("Pattern")}>
             <View style={{ flex: 8 }}>
               <View style={{ flex: 1 }}></View>
               <View style={{ flex: 4, flexDirection: 'row' }}>

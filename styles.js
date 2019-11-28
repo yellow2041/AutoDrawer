@@ -85,7 +85,7 @@ export default StyleSheet.create({
         alignItems:'center',
     },
     sketch: {
-        flex: 2,
+        flex: 3,
         alignItems: "center",
         height: '100%',
         width: '100%',
