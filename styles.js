@@ -85,6 +85,11 @@ export default StyleSheet.create({
         color:"#FCF6E4",
         alignItems:'center',
     },
+    anotherGoodsBtn: {
+        fontSize: 0.05*width,
+        color:"#FCF6E4",
+        alignItems:'center',
+    },
     sketch: {
         flex: 3,
         alignItems: "center",
@@ -100,7 +105,7 @@ export default StyleSheet.create({
         flex: 1,
         height: '100%',
         width: '100%',
-        resizeMode: 'cover',
+        resizeMode: "contain",
     },
     menu: {
         flex: 1

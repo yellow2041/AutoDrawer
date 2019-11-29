@@ -29,7 +29,8 @@ class pattern extends Component {
     checkSelectedGallery = () => {
         if (this.props.checkPalette !== true) {
             if (this.state.check === 1) {
-                return (<View style={{ flex: 1 }}>
+                return (
+                <View style={{ flex: 1 }}>
                     <Image style={{ flex: 1, width: undefined, height: undefined }}
                         source={require('../icons/check.png')} />
                 </View>);

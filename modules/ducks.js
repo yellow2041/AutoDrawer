@@ -27,6 +27,7 @@ export const setToken = createAction(types.SET_TOKEN);
 export const setCategory = createAction(types.SET_CATEGORY);
 export const setMyImage = createAction(types.SET_MYIMAGE);
 export const setCheckPalette = createAction(types.SET_CHECKPALETTE);
+export const setDiscoGANcomplete = createAction(types.SET_DISCOGANCOMPLETE);
 
 // Default values
 const baseState = ({
@@ -44,6 +45,7 @@ const baseState = ({
                     require('../icons/test_image/3.jpg'),
                     require('../icons/test_image/4.jpg') ],
     checkPalette: false,
+    discoGANcomplete: false,
 });
 
 // Define reducers. actual implement here.
@@ -59,6 +61,7 @@ export default handleActions({
     [types.SET_CATEGORY]    : ( state, action ) => { return Object.assign({}, state, { category     : action.payload }) },
     [types.SET_MYIMAGE]     : ( state, action ) => { return Object.assign({}, state, { myImage      : action.payload }) },
     [types.SET_CHECKPALETTE]: ( state, action ) => { return Object.assign({}, state, { checkPalette : action.payload }) },
+    [types.SET_DISCOGANCOMPLETE]: ( state, action ) => { return Object.assign({}, state, { discoGANcomplete : action.payload }) },
 
 }, baseState);
 
