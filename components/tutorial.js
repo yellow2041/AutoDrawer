@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
-import {View,Text} from 'react-native';
+import {View,Dimensions} from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
 import Slideshow from 'react-native-image-slider-show';
+var {height, width} = Dimensions.get('window');
 
 class Tutorial extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            image:[
-                JSON.stringify(require('../icons/tutorial_image/1.jpg')),
-                '../icons/tutorial_image/2.jpg',
-                '../icons/tutorial_image/3.jpg',
-                '../icons/tutorial_image/4.jpg',
-                '../icons/tutorial_image/6.jpg',
-            ]
-        };
     }
 render(){
     return(
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,backgroundColor: '#CAC0E4'}}>
         <Slideshow 
       dataSource={[
-        require('../icons/tutorial_image/1.jpg'),
-        require('../icons/tutorial_image/2.jpg'),
-        require('../icons/tutorial_image/3.jpg'),
-        require('../icons/tutorial_image/4.jpg'),
-        require('../icons/tutorial_image/5.jpg'),
-        require('../icons/tutorial_image/6.jpg')
-    ]}/> 
+        {url:'https://github.com/kmes055/AutoDrawer/blob/jy_app/icons/1.jpg?raw=true'},
+        {url:'https://github.com/kmes055/AutoDrawer/blob/jy_app/icons/2.jpg?raw=true'},
+        {url:'https://github.com/kmes055/AutoDrawer/blob/jy_app/icons/3.jpg?raw=true'},
+        {url:'https://github.com/kmes055/AutoDrawer/blob/jy_app/icons/4.jpg?raw=true'},
+        {url:'https://github.com/kmes055/AutoDrawer/blob/jy_app/icons/5..jpg?raw=true'},
+        {url:'https://github.com/kmes055/AutoDrawer/blob/jy_app/icons/6.jpg?raw=true'},
+    ]}
+    height = {height}
+    scrollEnabled={false}/> 
     </View>
 );
     }
 }
-
+Tutorial.navigationOptions = {
+    header: null
+}
 export default Tutorial;

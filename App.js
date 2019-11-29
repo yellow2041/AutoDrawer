@@ -17,6 +17,7 @@ import Tutorial from './components/tutorial';
 import Progress from './components/ProgressBarComponent.android';
 import About from './components/about';
 import Palette from './components/Palette';
+import ProgressBar from './components/ProgressBarComponent.android';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 
@@ -38,6 +39,7 @@ const DrawerNav = createDrawerNavigator({
     Tutorial: Tutorial,
     Transpose: Transpose,
     마이페이지: Mypage,
+    진행바:ProgressBar,
 },
     {   
         drawerPosition: 'right',
