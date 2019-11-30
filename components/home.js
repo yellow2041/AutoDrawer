@@ -62,7 +62,10 @@ class Home extends Component {
         <View style={styles.rowSpace1}></View>
         <View style={styles.rowLogo}>
           <View style={{ flex: 1 }}></View>
-          <Image style={styles.logo}
+          <Image style={{flex: 3,
+        alignItems: "center",
+        height: '150%',
+        width: '150%',}}
             source={require('../icons/logo.png')} />
           <View style={{ flex: 1 }}></View>
         </View>
@@ -112,7 +115,7 @@ class Home extends Component {
             </View>
             <View style={{ flex: 3, flexDirection: 'row' }}>
               <View style={{ flex: 1 }}></View>
-              <Text style={styles.btnText}>Pattern</Text>
+              <Text style={styles.btnText}> Pattern</Text>
               <View style={{ flex: 1 }}></View>
             </View>
             <View style={{ flex: 1 }}></View>
